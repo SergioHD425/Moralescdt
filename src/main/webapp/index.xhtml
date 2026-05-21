@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+<h:head>
+
+    <title> CDT</title>
+    <h:outputStylesheet library="css" name="estilos.css"/>
+</h:head>
+
+<h:body>
+
+<div class="contenedor">
+
+    <h1> CDT</h1>
+
+    <h:form>
+
+        <h:messages style="color:red"/>
+
+        <h2>Información del Inversionista</h2>
+
+        <h:panelGrid columns="2" cellpadding="5">
+
+            <h:outputLabel for="nombre"
+                           value="Nombres:"/>
+
+            <h:inputText id="nombre"
+                         value="#{cdtBean.currentCdt.nombre}"
+                         required="true"
+                         requiredMessage="El nombre es obligatorio">
+
+                <f:validateRegex pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"/>
+
+            </h:inputText>
+
+            <h:outputLabel for="apellidos"
+                           value="Apellidos:"/>
+
+            <h:inputText id="apellidos"
+                         value="#{cdtBean.currentCdt.apellidos}"
+                         required="true"
+                         requiredMessage="Los apellidos son obligatorios">
+
+                <f:validateRegex pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"/>
+
+            </h:inputText>
+
+            <h:outputLabel for="correo"
+                           value="Correo:"/>
+
+            <h:inputText id="correo"
+                         value="#{cdtBean.currentCdt.correo}"
+                         required="true"
+                         requiredMessage="El correo es obligatorio">
+
+                <f:validateRegex pattern="^[^@]+@[^@]+\.[^@]+$"/>
+
+            </h:inputText>
+
+            <h:outputLabel for="telefono"
+                           value="Teléfono:"/>
+
+            <h:inputText id="telefono"
+                         value="#{cdtBean.currentCdt.telefono}"
+                         required="true"
+                         requiredMessage="El teléfono es obligatorio">
+
+                <f:validateRegex pattern="^[0-9]+$"/>
+
+            </h:inputText>
+
+        </h:panelGrid>
+
+        <br/>
+
+        <h2>Información del CDT</h2>
+
+        <h:panelGrid columns="2" cellpadding="5">
+
+            <h:outputLabel for="dias"
+                           value="Plazo en días:"/>
+
+            <h:inputText id="dias"
+                         value="#{cdtBean.currentCdt.dias}"
+                         required="true"
+                         requiredMessage="Los días son obligatorios">
+
+                <f:validateLongRange minimum="30"/>
+
+            </h:inputText>
+
+            <h:outputLabel for="valor"
+                           value="Valor de inversión:"/>
+
+            <h:inputText id="valor"
+                         value="#{cdtBean.currentCdt.valorInversion}"
+                         required="true"
+                         requiredMessage="El valor es obligatorio">
+
+                <f:validateDoubleRange minimum="2000000"/>
+
+            </h:inputText>
+
+            <h:outputLabel for="tasa"
+                           value="Tasa de interés:"/>
+
+            <h:inputText id="tasa"
+                         value="#{cdtBean.currentCdt.tasaInteres}"
+                         required="true"
+                         requiredMessage="La tasa es obligatoria"/>
+
+        </h:panelGrid>
+
+        <br/>
+
+        <h:commandButton value="Calcular Rendimiento"
+                         action="#{cdtBean.simular}"/>
+
+        <h:commandButton value="Limpiar Historial"
+                         action="#{cdtBean.limpiar}"
+                         immediate="true"/>
+
+    </h:form>
+
+    <hr/>
+
+<footer>
+    Sergio David Morales - Programación Avanzada - Grupo 301 <br/>
+    Universidad Distrital Francisco José de Caldas Tecnológica - 2026
+</footer>
+
+</div>
+</h:body>
+
+</html>

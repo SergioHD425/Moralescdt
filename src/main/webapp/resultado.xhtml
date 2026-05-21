@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+<h:head>
+
+    <title>CDT</title>
+    <h:outputStylesheet library="css" name="estilos.css"/>
+
+</h:head>
+
+<h:body>
+
+<div class="contenedor">
+    <h1>Resultado de la Simulación</h1>
+
+    <h2>Datos del Cliente</h2>
+
+    <p>
+        <strong>Nombre:</strong>
+
+        #{cdtBean.currentCdt.nombre}
+        #{cdtBean.currentCdt.apellidos}
+    </p>
+
+    <p>
+        <strong>Correo:</strong>
+
+        #{cdtBean.currentCdt.correo}
+    </p>
+
+    <p>
+        <strong>Teléfono:</strong>
+
+        #{cdtBean.currentCdt.telefono}
+    </p>
+
+    <hr/>
+
+    <h2>Resultado Financiero</h2>
+
+    <p>
+        <strong>Días:</strong>
+
+        #{cdtBean.currentCdt.dias}
+    </p>
+
+    <p>
+        <strong>Valor Invertido:</strong>
+
+        <h:outputText value="#{cdtBean.currentCdt.valorInversion}">
+
+            <f:convertNumber type="currency"
+                             currencySymbol="$ "/>
+
+        </h:outputText>
+
+    </p>
+
+    <p>
+        <strong>Ganancia:</strong>
+
+        <h:outputText value="#{cdtBean.currentCdt.gananciaBruta}">
+
+            <f:convertNumber type="currency"
+                             currencySymbol="$ "/>
+
+        </h:outputText>
+
+    </p>
+
+    <p>
+        <strong>Valor Total:</strong>
+
+        <h:outputText value="#{cdtBean.currentCdt.valorTotal}">
+
+            <f:convertNumber type="currency"
+                             currencySymbol="$ "/>
+
+        </h:outputText>
+
+    </p>
+
+    <hr/>
+
+    <h2>Historial de Simulaciones</h2>
+
+  <h:dataTable value="#{cdtBean.historial}"
+             var="item"
+             styleClass="historial">
+
+        <h:column>
+
+            <f:facet name="header">
+                Cliente
+            </f:facet>
+
+            #{item.nombre}
+            #{item.apellidos}
+
+        </h:column>
+
+        <h:column>
+
+            <f:facet name="header">
+                Días
+            </f:facet>
+
+            #{item.dias}
+
+        </h:column>
+
+        <h:column>
+
+            <f:facet name="header">
+                Inversión
+            </f:facet>
+
+            <h:outputText value="#{item.valorInversion}">
+
+                <f:convertNumber type="currency"
+                                 currencySymbol="$ "/>
+
+            </h:outputText>
+
+        </h:column>
+
+        <h:column>
+
+            <f:facet name="header">
+                Ganancia
+            </f:facet>
+
+            <h:outputText value="#{item.gananciaBruta}">
+
+                <f:convertNumber type="currency"
+                                 currencySymbol="$ "/>
+
+            </h:outputText>
+
+        </h:column>
+
+        <h:column>
+
+            <f:facet name="header">
+                Total
+            </f:facet>
+
+            <h:outputText value="#{item.valorTotal}">
+
+                <f:convertNumber type="currency"
+                                 currencySymbol="$ "/>
+
+            </h:outputText>
+
+        </h:column>
+
+    </h:dataTable>
+
+    <br/>
+
+    <h:form>
+
+        <h:commandButton value="Nueva Simulación"
+                         action="#{cdtBean.volver}"/>
+
+    </h:form>
+
+    <hr/>
+
+ <footer>
+    Sergio David Morales - Programación Avanzada - Grupo 301 <br/>
+    Universidad Distrital Francisco José de Caldas Tecnológica - 2026
+</footer>
+
+</div>
+</h:body>
+
+</html>
